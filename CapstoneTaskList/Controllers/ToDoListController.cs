@@ -9,13 +9,19 @@ namespace CapstoneTaskList.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TaskListController : ControllerBase
+    public class ToDoListController : ControllerBase
     {
         TaskDAL db = new TaskDAL();
         [HttpGet]
-        public List<TaskList> GetTasks()
+        public List<ToDoItem> GetTasks()
         {
-            return db.ListAllTasks();
+            return db.GetToDoList();
+        }
+        [HttpGet("TeamMembers")]
+        public List<TeamMember> GetTeamMembers()
+        {
+            return db.GetTeamMembers();
         }
     }
+
 }
