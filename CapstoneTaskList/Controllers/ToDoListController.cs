@@ -32,7 +32,7 @@ namespace CapstoneTaskList.Controllers
         public void UpdateToDo(ToDoItem toUpdate)
         {
             db.UpdateToDoItem(toUpdate);
-        }
+        }        
         [HttpDelete("DeleteToDo/{id}")]
         public void DeleteToDo(int id)
         {
