@@ -9,6 +9,7 @@ namespace CapstoneTaskList.Models
 {
     public class TaskDAL
     {
+        //ToDoItem CRUD
         public List<ToDoItem> GetToDoList()
         {
             using(var connect = new MySqlConnection(Secret.Connection))
@@ -18,17 +19,6 @@ namespace CapstoneTaskList.Models
                 List<ToDoItem> taskList = connect.Query<ToDoItem>(sql).ToList();
                 connect.Close();
                 return taskList;
-            }
-        }
-        public List<ToDoItem> GetToDoItemsByTmId(int tmId)
-        {
-            string sql = $"select * from tasks where tmid={tmId}";
-            using (var connect = new MySqlConnection(Secret.Connection))
-            {
-                connect.Open();
-                List<ToDoItem> assignmentList = connect.Query<ToDoItem>(sql).ToList();
-                connect.Close();
-                return assignmentList;
             }
         }
         public ToDoItem GetToDoItem(int id)
@@ -43,49 +33,34 @@ namespace CapstoneTaskList.Models
             }
         }
         
-        public List<TeamMember> GetTeamMembers()
+        public void InsertToDoItem(ToDoItem td)
         {
-            string sql = "select * from teammembers";
-            using (var connect = new MySqlConnection(Secret.Connection))
-            {                
-                connect.Open();
-                List<TeamMember> tmList = connect.Query<TeamMember>(sql).ToList();
-                connect.Close();
-                return tmList;
-            }
-        }
-        public TeamMember GetTeamMember(int id)
-        {
-            string sql = $"select * from teammembers where id={id}";
-            using (var connect = new MySqlConnection(Secret.Connection))
+            string sql = $"insert into tasks values(0,'{td.Tm}','{td.ShortDescription}','{td.DueDate}',{td.Completed})";
+            using(var connect= new MySqlConnection(Secret.Connection))
             {
                 connect.Open();
-                TeamMember tm = connect.Query<TeamMember>(sql).First();
+                connect.Query<ToDoItem>(sql);
                 connect.Close();
-                return tm;
             }
         }
-
-        public List<TmToDo> GetAssignments()
+        public void UpdateToDoItem(ToDoItem td)
         {
-            string sql = "select * from tmtodos";
-            using(var connect = new MySqlConnection(Secret.Connection))
-            {
-                connect.Open();
-                List<TmToDo> assignmentList = connect.Query<TmToDo>(sql).ToList();
-                connect.Close();
-                return assignmentList;
-            }
-        }
-        public List<TmToDo> GetAssignmentByTmId(int tmId)
-        {
-            string sql = $"select * from tomtodos where tmid={tmId}";
+            string sql = $"update tasks set tm='{td.Tm}',shortdescription='{td.ShortDescription}',due_date='{td.DueDate}',completed={td.Completed}";
             using (var connect = new MySqlConnection(Secret.Connection))
             {
                 connect.Open();
-                List<TmToDo> assignmentList = connect.Query<TmToDo>(sql).ToList();
+                connect.Query<ToDoItem>(sql);
                 connect.Close();
-                return assignmentList;
+            }
+        }
+        public void DeleteToDoItem(int id)
+        {
+            string sql = $"delete from tasks where id={id}";
+            using (var connect = new MySqlConnection(Secret.Connection))
+            {
+                connect.Open();
+                connect.Query<ToDoItem>(sql);
+                connect.Close();
             }
         }
     }

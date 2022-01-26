@@ -15,12 +15,28 @@ namespace CapstoneTaskList.Controllers
         [HttpGet]
         public List<ToDoItem> GetTasks()
         {
+            //send it
             return db.GetToDoList();
         }
-        [HttpGet("TeamMembers")]
-        public List<TeamMember> GetTeamMembers()
+        [HttpGet("GetToDo/{id}")]
+        public ToDoItem GetToDo(int id)
         {
-            return db.GetTeamMembers();
+            return db.GetToDoItem(id);
+        }
+        [HttpPost("CreateToDo")]
+        public void CreateToDo(ToDoItem toInsert)
+        {
+            db.InsertToDoItem(toInsert);
+        }
+        [HttpPut("UpdateToDo")]
+        public void UpdateToDo(ToDoItem toUpdate)
+        {
+            db.UpdateToDoItem(toUpdate);
+        }
+        [HttpDelete("DeleteToDo/{id}")]
+        public void DeleteToDo(int id)
+        {
+            db.DeleteToDoItem(id);
         }
     }
 

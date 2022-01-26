@@ -10,15 +10,15 @@ namespace CapstoneTaskList.Models
     {
         [Key]
         public int Id { get; set; }
-        public int TmId { get; set; }
+        public string Tm { get; set; }
         public string ShortDescription { get; set; }
-        public DateTime DueDate { get; set; }
+        public string DueDate { get; set; }
         public bool Completed { get; set; }
 
-        public ToDoItem(int id, int tmId, string shortDescription, DateTime dueDate, bool completed)
+        public ToDoItem(int id, string tm, string shortDescription, string dueDate, bool completed)
         {
             Id = id;
-            TmId = tmId;
+            Tm = tm;
             ShortDescription = shortDescription;
             DueDate = dueDate;
             Completed = completed;

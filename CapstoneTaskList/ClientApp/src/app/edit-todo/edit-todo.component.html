@@ -1,0 +1,8 @@
+<h3>Edit Item# {{toDo.id}}</h3>
+<p>Team Member:</p>
+<input type="text" name="tm" id="tm" value="{{toDo.tm}}"/>
+<p>Short Description:</p>
+<input type="text" name="shortDescription" id="shortDescription" value="{{toDo.shortDescription}}"/>
+<p>Due Date:</p>
+<input type="date" id="dateTime" value="{{toDo.shortDescription}}"/>
+<button (click)="UpdateItem(toDo.id)">Update</button>

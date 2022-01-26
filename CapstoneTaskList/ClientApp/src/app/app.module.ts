@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import { CreateTodoComponent } from './create-todo/create-todo.component';
+import { EditTodoComponent } from './edit-todo/edit-todo.component';
+import { TodoService } from './todo.service';
 
 @NgModule({
   declarations: [
@@ -18,20 +21,23 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    TodoListComponent
+    TodoListComponent,
+    CreateTodoComponent,
+    EditTodoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: TodoListComponent},
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      {path: 'ToDos', component: TodoListComponent}
+      { path: "create", component: CreateTodoComponent},
+      { path: "edit", component:EditTodoComponent}
     ])
   ],
-  providers: [],
+  providers: [TodoListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

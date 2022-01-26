@@ -4,12 +4,15 @@
 //
 //   const toDoItem = Convert.toToDoItem(json);
 
+
+
 export interface ToDoItem {
-    id:               number;
-    tmId:             number;
+    id?:               number;
+    tm?:             string;
+    
     shortDescription: string;
-    dueDate:          Date;
-    completed:        boolean;
+    dueDate?:          string;
+    completed?:        boolean;
 }
 
 // Converts JSON strings to/from your types
@@ -18,7 +21,7 @@ export class Convert {
         return JSON.parse(json);
     }
 
-    public static toDoItemToJson(value: ToDoItem[]): string {
+    public static toDoItemToJson(value: any[]): string {
         return JSON.stringify(value);
     }
 }

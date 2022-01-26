@@ -1,1 +1,17 @@
-<p>todo-list works!</p>
+<div class="ToDoListDiv">
+    <div *ngFor="let item of toDos" style="border: 1px solid black">
+        <div id="displayDiv{{item.id}}" style="border:1px solid black;">
+            <p id="idDesc{{item.id}}"><span class="indexSpan" style="padding-left:5px;padding-right:5px;border-radius: 10px;border:1px solid black; background-color: aqua;">Task: {{item.id}}</span>&nbsp;&nbsp;{{item.shortDescription}}</p>
+            <p id="assignedTo{{item.id}}">{{item.tm}}</p>
+            <p id="completed{{item.id}}">Completed: <input type="checkbox" name="completed" value="{{item.completed}}" readonly="true"/></p>
+        </div>
+        <!--
+            This breaks my code. I don't get why.
+            <app-edit-todo id="edit{{item.id}}" [Id]=item.id style="display: none"></app-edit-todo>
+        -->
+        <button (click)="DeleteToDoItem(item.id)">Delete Item</button>
+    </div>
+</div>
+<div class="NewToDo">
+    <app-create-todo></app-create-todo>
+</div>
